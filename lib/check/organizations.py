@@ -16,13 +16,6 @@ async def check_organizations(
         management_details = org.get('management', {}).get('details', [])
 
         try:
-            org_id = int(org["id"])
-        except Exception:
-            raise Exception(
-                'Organization ID is expected as integer value '
-                f'(got: {org["id"]})')
-
-        try:
             api_enabled = org['api']['enabled']
         except KeyError:
             raise Exception('Api Enabled missing in organization data')
@@ -37,7 +30,7 @@ async def check_organizations(
 
         items.append({
             "name": org["id"],  # str
-            "id": org_id,  # int
+            "id": org["id"],  # str  (same as name)
             "url": org["url"],  # str
             "apiEnabled": api_enabled,  # bool
             "organizationName": org["name"],  # str
