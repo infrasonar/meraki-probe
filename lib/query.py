@@ -19,7 +19,7 @@ async def query(
     uri = f'https://api.meraki.com/api/v1{req}'
 
     async with aiohttp.ClientSession(connector=get_connector()) as session:
-        async with session.post(uri, headers=headers, ssl=True) as resp:
+        async with session.get(uri, headers=headers, ssl=True) as resp:
             assert resp.status // 100 == 2, \
                 f'response status code: {resp.status}; reason: {resp.reason}'
 
