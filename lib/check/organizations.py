@@ -11,7 +11,7 @@ class CheckOrganizations(Check):
     @staticmethod
     async def run(asset: Asset, local_config: dict, config: dict) -> dict:
         req = '/organizations'
-        resp = await query(asset, local_config, config, req)
+        resp = await query(local_config, req)
         items: list[dict[str, Any]] = []
         for org in resp:
             licensing_model = org.get('licensing', {}).get('model')
